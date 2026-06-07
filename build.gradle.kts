@@ -51,4 +51,8 @@ jlink {
     launcher {
         name = "app"
     }
+    jpackage {
+        imageName = "PerderPesoCorriendo"
+        skipInstaller = true
+    }
 }
