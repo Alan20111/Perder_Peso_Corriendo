@@ -27,7 +27,7 @@ tasks.withType<JavaCompile> {
 
 application {
     mainModule.set("com.practica1.practica1top")
-    mainClass.set("com.practica1.practica1top.HelloApplication")
+    mainClass.set("com.practica1.practica1top.Launcher")
 }
 
 javafx {
