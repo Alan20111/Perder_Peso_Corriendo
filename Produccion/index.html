@@ -3,43 +3,133 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Perder Peso Corriendo — Demo (Alan Méndez)</title>
 <style>
-  body{margin:0;background:#0d1117;color:#e6edf3;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 12px}
-  .lead{text-align:center;margin-bottom:14px;max-width:680px}
-  .lead h1{font-size:1.2rem;margin:0}.lead p{color:#9aa7b8;font-size:.85rem;margin:6px 0 0}.lead a{color:#5aa2ff;text-decoration:none}
+  body{margin:0;background:#0d1117;color:#e6edf3;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:22px 12px}
+  .lead{text-align:center;margin-bottom:14px;max-width:760px}
+  .lead h1{font-size:1.25rem;margin:0}.lead p{color:#9aa7b8;font-size:.86rem;margin:6px 0 0}.lead a{color:#5aa2ff;text-decoration:none}
   .layout{display:flex;gap:18px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
-  .win{width:320px;border:1px solid #2b2b2b;border-radius:6px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.55);background:#f4f4f4;color:#1f1f1f}
-  .titlebar{height:28px;background:linear-gradient(#f7f7f7,#e4e4e4);border-bottom:1px solid #c4c4c4;display:flex;align-items:center;padding:0 8px;font-size:12px;color:#333}
-  .titlebar .wb{margin-left:auto;display:flex}.titlebar .wb span{width:30px;height:20px;display:flex;align-items:center;justify-content:center;color:#555;font-size:11px}.titlebar .wb .cls:hover{background:#e81123;color:#fff}
-  .stage{height:212px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:20px}
-  #welcome{font-size:13px;color:#1f1f1f;min-height:16px;text-align:center}
-  .jbtn{font-family:inherit;font-size:13px;padding:5px 16px;border:1px solid #b6b6b6;border-radius:5px;background:linear-gradient(#fdfdfd,#e8e8e8);color:#1f1f1f;cursor:pointer}
-  .jbtn:hover{background:linear-gradient(#fff,#eee)}.jbtn:focus{outline:none;border-color:#5b9bd5;box-shadow:0 0 0 2px rgba(91,155,213,.4)}
+  .win{flex:1 1 560px;min-width:320px;max-width:720px;border:1px solid #2b2b2b;border-radius:8px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.55);background:#FFF8E1}
+  .tbar{height:30px;background:linear-gradient(#f7f7f7,#e7e7e7);border-bottom:1px solid #c4c4c4;display:flex;align-items:center;padding:0 10px;gap:7px}
+  .tbar i{width:12px;height:12px;border-radius:50%;display:inline-block}.tbar i.r{background:#ff5f56}.tbar i.y{background:#ffbd2e}.tbar i.g{background:#27c93f}
+  .tbar .tt{margin-left:10px;font-size:12px;color:#444}
+  .winbody{padding:22px 28px 26px}
+  .ttl{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .ttl .clock{font-size:28px;color:#e67e22}.ttl h2{font-size:1.35rem;color:#8d6e63;margin:0;font-weight:800}
+  .inputs{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:18px}
+  .inp label{display:block;font-size:12px;font-weight:700;color:#5d4037;margin-bottom:5px}
+  .inp .box{display:flex;align-items:center;background:#fff;border:1px solid #FFB74D;border-radius:8px;padding:6px 10px;width:120px}
+  .inp .box input{border:0;outline:0;font-weight:700;font-size:14px;width:100%;background:transparent;color:#333}
+  .inp .box span{color:#757575;font-size:13px;margin-left:4px}
+  .card{background:#fff;border-radius:15px;box-shadow:0 4px 14px rgba(0,0,0,.06);padding:20px 25px;margin-bottom:16px}
+  .velo-t{font-size:16px;font-weight:800;color:#e65100;margin:0 0 12px}
+  input[type=range]{width:100%;accent-color:#FF9800;height:6px}
+  .velo-ends{display:flex;justify-content:space-between;font-size:10px;color:#9e9e9e;margin-top:6px}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+  .stat{flex:1 1 120px;background:#fff;border-radius:12px;padding:16px 8px;text-align:center}
+  .stat .v{font-size:26px;font-weight:800;color:#37474f;line-height:1.1}
+  .stat .l{font-size:10px;font-weight:700;color:#90a4ae;margin-top:4px}
+  .stat.blue{background:#2979FF}.stat.blue .v{color:#fff}.stat.blue .l{color:#BBDEFB}
+  .stat.green{background:#00C853}.stat.green .v{color:#fff}.stat.green .l{color:#C8E6C9}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:16px}
+  .sess{background:#E3F2FD;border-radius:10px;padding:12px;text-align:center}
+  .sess .m{font-size:11px;color:#78909c}.sess .n{font-size:24px;font-weight:800;color:#e65100}.sess .s{font-size:8px;color:#b0bec5}
+  .sess.full{grid-column:1/4;background:#C8E6C9}.sess.full .n{font-size:14px;color:#2e7d32;font-weight:800}
+  .prof{display:flex;align-items:center;gap:20px;background:#fff;border-radius:15px;box-shadow:0 4px 14px rgba(0,0,0,.1);padding:15px 18px}
+  .prof img{width:100px;height:100px;border-radius:50%;object-fit:cover;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+  .prof .n{font-size:16px;font-weight:800;color:#1976D2}
+  .prof .c{font-size:12px;font-weight:700;color:#616161}.prof .d{font-size:11px;color:#616161}.prof .g{font-size:11px;color:#9e9e9e}
   .info{width:320px;flex-shrink:0;background:#11151c;border:1px solid #2a3140;border-radius:12px;padding:18px;color:#e6edf3}
-  .info h3{font-size:1.05rem;margin:0 0 8px;color:#fff}.info h4{font-size:.82rem;margin:14px 0 6px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.5px}
+  .info h3{font-size:1.05rem;margin:0 0 8px;color:#fff}.info h4{font-size:.8rem;margin:14px 0 6px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.5px}
   .info p{font-size:.88rem;color:#c9d4e2;line-height:1.55;margin:0}
-  .note{font-size:.82rem;color:#c9a227;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:8px;padding:8px 10px;margin-top:12px;line-height:1.45}
+  .info ul{margin:8px 0 0;padding-left:18px}.info li{font-size:.85rem;color:#c9d4e2;line-height:1.5;margin-bottom:4px}
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chips span{font-size:.72rem;background:#1c2230;border:1px solid #2a3140;color:#9aa7b8;border-radius:6px;padding:3px 8px}
   .dl{display:block;text-align:center;background:#238636;color:#fff;border-radius:8px;padding:9px;font-weight:600;font-size:.9rem;margin-top:8px;text-decoration:none}.dl:hover{filter:brightness(1.1)}
   .cap{font-size:.72rem;color:#7d8896;margin:6px 0 0;line-height:1.4}.info code{background:#1c2230;padding:1px 4px;border-radius:4px;font-size:.8rem}
   .gh{display:block;text-align:center;background:#161b22;border:1px solid #2a3140;color:#e6edf3;border-radius:8px;padding:8px;font-size:.85rem;margin-top:8px;text-decoration:none}
 </style></head><body>
   <div class="lead"><h1>🏃 Perder Peso Corriendo</h1>
-    <p>Demo web fiel al proyecto JavaFX · <a href="https://portafolio-ten-olive-50.vercel.app/">← Volver al portafolio</a></p></div>
+    <p>Demo web fiel del proyecto JavaFX · Calculadora de sesiones de carrera · <a href="https://portafolio-ten-olive-50.vercel.app/">← Volver al portafolio</a></p></div>
   <div class="layout">
     <div class="win">
-      <div class="titlebar">Hello!<span class="wb"><span>—</span><span>▢</span><span class="cls">✕</span></span></div>
-      <div class="stage"><div id="welcome"></div>
-        <button class="jbtn" onclick="document.getElementById('welcome').textContent='Welcome to JavaFX Application!'">Hello!</button>
+      <div class="tbar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="tt">Perder Peso Corriendo — Java · JavaFX (MVC)</span></div>
+      <div class="winbody">
+        <div class="ttl"><span class="clock">⏱</span><h2>Calcula tus sesiones de carrera</h2></div>
+        <div class="inputs">
+          <div class="inp"><label>Tu peso actual</label><div class="box"><input id="peso" value="82"><span>kg</span></div></div>
+          <div class="inp"><label>Peso a perder</label><div class="box"><input id="perd" value="5"><span>kg</span></div></div>
+          <div class="inp"><label>Tiempo diario</label><div class="box"><input id="mins" value="30"><span>min</span></div></div>
+        </div>
+        <div class="card">
+          <p class="velo-t" id="veloT">Velocidad de carrera: 8.0 km/h (7'30"/km)</p>
+          <input type="range" id="velo" min="6" max="16" step="0.1" value="8">
+          <div class="velo-ends"><span>Caminata (6 km/h)</span><span>Sprint (16 km/h)</span></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="v" id="sObj">5 kg</div><div class="l">OBJETIVO (KG)</div></div>
+          <div class="stat"><div class="v" id="sKcal">38.5k</div><div class="l">KCAL TOTALES</div></div>
+          <div class="stat blue"><div class="v" id="sHora">0</div><div class="l">KCAL / HORA</div></div>
+          <div class="stat green"><div class="v" id="sTot">0h</div><div class="l">TOTALES</div></div>
+        </div>
+        <div class="grid">
+          <div class="sess"><div class="m">30 min</div><div class="n" id="g30">0</div><div class="s">SESIONES</div></div>
+          <div class="sess"><div class="m">45 min</div><div class="n" id="g45">0</div><div class="s">SESIONES</div></div>
+          <div class="sess"><div class="m">60 min</div><div class="n" id="g60">0</div><div class="s">SESIONES</div></div>
+          <div class="sess"><div class="m">75 min</div><div class="n" id="g75">0</div><div class="s">SESIONES</div></div>
+          <div class="sess"><div class="m">90 min</div><div class="n" id="g90">0</div><div class="s">SESIONES</div></div>
+          <div class="sess"><div class="m">120 min</div><div class="n" id="g120">0</div><div class="s">SESIONES</div></div>
+          <div class="sess full"><div class="n" id="gUser">Calculando...</div></div>
+        </div>
+        <div class="prof">
+          <img src="data:image/jpeg;base64,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" alt="Alan Daniel Méndez Jiménez">
+          <div>
+            <div class="n">Alan Daniel Méndez Jiménez</div>
+            <div class="c">ING. en Sistemas Computacionales</div>
+            <div class="d">Tópicos Avanzados de Programación · 4to Semestre Grupo A</div>
+            <div class="g">📱 GitHub: @Alan20111</div>
+          </div>
+        </div>
       </div>
     </div>
     <aside class="info">
       <h3>Acerca del proyecto</h3>
-      <p>Proyecto <b>JavaFX</b> (Gradle) en etapa de <b>plantilla inicial</b>: contiene la estructura base generada (aplicación, controlador y modelo), lista para implementar la lógica de un simulador de pérdida de peso por carrera.</p>
-      <div class="note">Nota honesta: aún no incluye la lógica del simulador. La ventana mostrada es la plantilla real tal cual (etiqueta + botón “Hello!”).</div>
-      <div class="chips"><span>JavaFX</span><span>Gradle</span><span>Java 21</span></div>
+      <p>Aplicación de escritorio en <b>JavaFX</b> que calcula cuántas <b>sesiones de carrera</b> necesitas para alcanzar un objetivo de pérdida de peso, según tu peso, velocidad (MET) y tiempo diario disponible.</p>
+      <h4>Cómo calcula</h4>
+      <ul>
+        <li>Calorías objetivo = kg a perder × 7700.</li>
+        <li>Gasto por minuto vía valor <b>MET</b> según velocidad.</li>
+        <li>Kcal/hora, horas totales y nº de sesiones (30–120 min).</li>
+      </ul>
+      <div class="chips"><span>JavaFX</span><span>Patrón MVC</span><span>Java 21</span></div>
       <a class="dl" href="https://github.com/Alan20111/Perder_Peso_Corriendo/releases">⬇ Descargar .jar</a>
       <div class="cap">Ejecutable JavaFX. El Release se publica con <code>./gradlew jar</code>.</div>
       <a class="gh" href="https://github.com/Alan20111/Perder_Peso_Corriendo">&lt;/&gt; Código en GitHub</a>
     </aside>
   </div>
+<script>
+  const $=id=>document.getElementById(id);
+  function met(v){ if(v<8)return 8.3; if(v<10)return 9.8; if(v<12)return 11.0; if(v<14)return 11.8; return 12.8; }
+  function calc(){
+    const peso=parseFloat($('peso').value), perd=parseFloat($('perd').value), velo=parseFloat($('velo').value);
+    let minUser=parseInt($('mins').value); if(isNaN(minUser)||minUser<=0) minUser=30;
+    if(isNaN(peso)||isNaN(perd)) return;
+    const caloTota=perd*7700;
+    const kcalMin=(met(velo)*peso*3.5)/200;
+    const kcalHora=kcalMin*60;
+    const horaTota=kcalHora===0?0:caloTota/kcalHora;
+    const nSes=m=>m<=0?0:Math.ceil((horaTota*60)/m);
+    $('sObj').textContent=perd.toFixed(0)+' kg';
+    $('sKcal').textContent=(caloTota/1000).toFixed(1)+'k';
+    $('sHora').textContent=kcalHora.toFixed(0);
+    $('sTot').textContent=horaTota.toFixed(1)+'h';
+    $('g30').textContent=nSes(30); $('g45').textContent=nSes(45); $('g60').textContent=nSes(60);
+    $('g75').textContent=nSes(75); $('g90').textContent=nSes(90); $('g120').textContent=nSes(120);
+    $('gUser').textContent='Necesitas '+nSes(minUser)+' sesiones de '+minUser+' min';
+  }
+  function veloLabel(){
+    const v=parseFloat($('velo').value), mpk=60/v, mn=Math.floor(mpk), sg=Math.floor((mpk-mn)*60);
+    $('veloT').textContent='Velocidad de carrera: '+v.toFixed(1)+' km/h ('+mn+"'"+String(sg).padStart(2,'0')+'"/km)';
+  }
+  ['peso','perd','mins'].forEach(id=>$(id).addEventListener('input',calc));
+  $('velo').addEventListener('input',()=>{veloLabel();calc();});
+  veloLabel(); calc();
+</script>
 </body></html>
