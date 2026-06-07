@@ -3,36 +3,43 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Perder Peso Corriendo — Demo (Alan Méndez)</title>
 <style>
-  body{margin:0;background:#0d1117;color:#e6edf3;font-family:'Segoe UI',system-ui,sans-serif;
-    min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 10px}
-  .lead{text-align:center;margin-bottom:16px;max-width:560px}
-  .lead h1{font-size:1.2rem;margin:0}.lead p{color:#9aa7b8;font-size:.85rem;margin:6px 0 0;line-height:1.5}
-  .lead a{color:#5aa2ff;text-decoration:none}
-  .note{margin-top:10px;font-size:.8rem;color:#c9a227;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);
-    border-radius:8px;padding:8px 12px}
-  /* Ventana JavaFX (Modena) 320x240 */
+  body{margin:0;background:#0d1117;color:#e6edf3;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 12px}
+  .lead{text-align:center;margin-bottom:14px;max-width:680px}
+  .lead h1{font-size:1.2rem;margin:0}.lead p{color:#9aa7b8;font-size:.85rem;margin:6px 0 0}.lead a{color:#5aa2ff;text-decoration:none}
+  .layout{display:flex;gap:18px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
   .win{width:320px;border:1px solid #2b2b2b;border-radius:6px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.55);background:#f4f4f4;color:#1f1f1f}
-  .titlebar{height:28px;background:linear-gradient(#f7f7f7,#e4e4e4);border-bottom:1px solid #c4c4c4;
-    display:flex;align-items:center;padding:0 8px;font-size:12px;color:#333}
-  .titlebar .wb{margin-left:auto;display:flex}.titlebar .wb span{width:30px;height:20px;display:flex;align-items:center;justify-content:center;color:#555;font-size:11px}
-  .titlebar .wb .cls:hover{background:#e81123;color:#fff}
+  .titlebar{height:28px;background:linear-gradient(#f7f7f7,#e4e4e4);border-bottom:1px solid #c4c4c4;display:flex;align-items:center;padding:0 8px;font-size:12px;color:#333}
+  .titlebar .wb{margin-left:auto;display:flex}.titlebar .wb span{width:30px;height:20px;display:flex;align-items:center;justify-content:center;color:#555;font-size:11px}.titlebar .wb .cls:hover{background:#e81123;color:#fff}
   .stage{height:212px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:20px}
   #welcome{font-size:13px;color:#1f1f1f;min-height:16px;text-align:center}
-  .jbtn{font-family:inherit;font-size:13px;padding:5px 16px;border:1px solid #b6b6b6;border-radius:5px;
-    background:linear-gradient(#fdfdfd,#e8e8e8);color:#1f1f1f;cursor:pointer}
-  .jbtn:hover{background:linear-gradient(#fff,#eee)}
-  .jbtn:focus{outline:none;border-color:#5b9bd5;box-shadow:0 0 0 2px rgba(91,155,213,.4)}
+  .jbtn{font-family:inherit;font-size:13px;padding:5px 16px;border:1px solid #b6b6b6;border-radius:5px;background:linear-gradient(#fdfdfd,#e8e8e8);color:#1f1f1f;cursor:pointer}
+  .jbtn:hover{background:linear-gradient(#fff,#eee)}.jbtn:focus{outline:none;border-color:#5b9bd5;box-shadow:0 0 0 2px rgba(91,155,213,.4)}
+  .info{width:320px;flex-shrink:0;background:#11151c;border:1px solid #2a3140;border-radius:12px;padding:18px;color:#e6edf3}
+  .info h3{font-size:1.05rem;margin:0 0 8px;color:#fff}.info h4{font-size:.82rem;margin:14px 0 6px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.5px}
+  .info p{font-size:.88rem;color:#c9d4e2;line-height:1.55;margin:0}
+  .note{font-size:.82rem;color:#c9a227;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.3);border-radius:8px;padding:8px 10px;margin-top:12px;line-height:1.45}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chips span{font-size:.72rem;background:#1c2230;border:1px solid #2a3140;color:#9aa7b8;border-radius:6px;padding:3px 8px}
+  .dl{display:block;text-align:center;background:#238636;color:#fff;border-radius:8px;padding:9px;font-weight:600;font-size:.9rem;margin-top:8px;text-decoration:none}.dl:hover{filter:brightness(1.1)}
+  .cap{font-size:.72rem;color:#7d8896;margin:6px 0 0;line-height:1.4}.info code{background:#1c2230;padding:1px 4px;border-radius:4px;font-size:.8rem}
+  .gh{display:block;text-align:center;background:#161b22;border:1px solid #2a3140;color:#e6edf3;border-radius:8px;padding:8px;font-size:.85rem;margin-top:8px;text-decoration:none}
 </style></head><body>
-  <div class="lead">
-    <h1>🏃 Perder Peso Corriendo</h1>
-    <p>Demo web fiel al proyecto JavaFX · <a href="https://portafolio-ten-olive-50.vercel.app/">← Volver al portafolio</a></p>
-    <div class="note">Nota honesta: este repositorio contiene la <b>plantilla inicial de JavaFX</b> (sin la lógica del simulador implementada). Esta es la ventana real tal cual: una etiqueta y un botón “Hello!”.</div>
-  </div>
-  <div class="win">
-    <div class="titlebar">Hello!<span class="wb"><span>—</span><span>▢</span><span class="cls">✕</span></span></div>
-    <div class="stage">
-      <div id="welcome"></div>
-      <button class="jbtn" onclick="document.getElementById('welcome').textContent='Welcome to JavaFX Application!'">Hello!</button>
+  <div class="lead"><h1>🏃 Perder Peso Corriendo</h1>
+    <p>Demo web fiel al proyecto JavaFX · <a href="https://portafolio-ten-olive-50.vercel.app/">← Volver al portafolio</a></p></div>
+  <div class="layout">
+    <div class="win">
+      <div class="titlebar">Hello!<span class="wb"><span>—</span><span>▢</span><span class="cls">✕</span></span></div>
+      <div class="stage"><div id="welcome"></div>
+        <button class="jbtn" onclick="document.getElementById('welcome').textContent='Welcome to JavaFX Application!'">Hello!</button>
+      </div>
     </div>
+    <aside class="info">
+      <h3>Acerca del proyecto</h3>
+      <p>Proyecto <b>JavaFX</b> (Gradle) en etapa de <b>plantilla inicial</b>: contiene la estructura base generada (aplicación, controlador y modelo), lista para implementar la lógica de un simulador de pérdida de peso por carrera.</p>
+      <div class="note">Nota honesta: aún no incluye la lógica del simulador. La ventana mostrada es la plantilla real tal cual (etiqueta + botón “Hello!”).</div>
+      <div class="chips"><span>JavaFX</span><span>Gradle</span><span>Java 21</span></div>
+      <a class="dl" href="https://github.com/Alan20111/Perder_Peso_Corriendo/releases">⬇ Descargar .jar</a>
+      <div class="cap">Ejecutable JavaFX. El Release se publica con <code>./gradlew jar</code>.</div>
+      <a class="gh" href="https://github.com/Alan20111/Perder_Peso_Corriendo">&lt;/&gt; Código en GitHub</a>
+    </aside>
   </div>
 </body></html>
